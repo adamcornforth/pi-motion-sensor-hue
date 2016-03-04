@@ -17,9 +17,19 @@ module.exports = function(grunt) {
           }]
       },
     },
+    sshexec: {
+      run: {
+        command: 'cd "apps/hue/src" && sudo python motion.py',
+        options: {
+          host: 'pi',
+          username: 'pi',
+          password: 'raspberry'
+        }
+      }
+    },
     watch: {
       files: ['src/**'],
-      tasks: ['scp']
+      tasks: ['scp', 'sshexec'] 
     }
   });
 
