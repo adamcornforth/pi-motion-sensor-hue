@@ -37,7 +37,7 @@ class Hue:
         self.led = LED(17)
 
         self.light_on = False
-        self.timeout_seconds = 5
+        self.timeout_seconds = 60
         self.last_motion = time.time()
 
     def lights_on(self):
@@ -95,7 +95,7 @@ class Hue:
 
         if(self.is_light_on() and self.timeout_elapsed()):
 
-            self.last_motion = time.time() + 5  # reset motion time but put it in the negative
+            #self.last_motion = time.time() + 5  # reset motion time but put it in the negative
                                                 # so that the lights turning off don't trigger 
                                                 # motion which turns them back on again
             self.lights_off()

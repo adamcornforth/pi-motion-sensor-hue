@@ -13,7 +13,7 @@ import time
 from datetime import datetime
 from PIL import Image
 
-class MotionDetector:
+class Camera:
     """A class for detecting Motion through the Pi's Camera Module"""
     def __init__(self):
         # Motion detection settings:

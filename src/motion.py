@@ -1,31 +1,26 @@
 
-from MotionDetector import MotionDetector
+from Camera import Camera
+from Pir import Pir
 from Hue import Hue
 import time
 
 hue = Hue()
-motion = MotionDetector()
+camera = Camera()
+pir = Pir()
 
-takePicture = False
+motion = False
 
 hue.lights_off()
 
 while (True):
-
-
-    takePicture = motion.detectMotion()
+    motion = pir.detectMotion()
  
-    if takePicture:
+    if motion:
         # if motion causes light to trigger
         if(hue.report_motion()):
-            motion.setThresholds(10, 200)
             # capture picture
             lastCapture = time.time()
-            motion.saveImage(motion.cameraSettings, motion.saveWidth, motion.saveHeight, motion.saveQuality, motion.diskSpaceToReserve)
-    else:
-        if(hue.report_no_motion()):
-            motion.setThresholds(10, 20)
+            camera.saveImage(camera.cameraSettings, camera.saveWidth, camera.saveHeight, camera.saveQuality, camera.diskSpaceToReserve)
 
-    # Swap comparison buffers
-    motion.image1 = motion.image2
-    motion.buffer1 = motion.buffer2
+    else:
+        hue.report_no_motion()
