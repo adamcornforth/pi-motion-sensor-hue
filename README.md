@@ -7,4 +7,10 @@ Mini project for the Raspberry Pi that turns some Philips Hue lights on when mot
 
 The data wire from the PIR is connected to the Pi's GPIO port number 18. 
 
-The Pi also triggers GPIO port number 17 if motion has been detected. In my project I have an LED wired up to this GPIO port. 
+The Pi also triggers GPIO port number 17 if motion has been detected. In my project I have an LED wired up to this GPIO port.
+
+## Grunt 
+
+Use `grunt watch` on the project root to automatically upload all the files in `src/` to a Pi that exists at `pi@pi` on the same network every time a file in `src/` changes. The watch task will also run the Python script after uploading the files. 
+
+Note that you may need to create the `home/pi/apps/hue` directory on your PI to allow the Grunt task to work.  
