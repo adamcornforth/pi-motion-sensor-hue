@@ -34,9 +34,9 @@ class Camera:
         self.cameraSettings = ""
 
         # settings of the photos to save
-        self.saveWidth   = 1296
-        self.saveHeight  = 972
-        self.saveQuality = 15 # Set jpeg quality (0 to 100)
+        self.saveWidth   = 570
+        self.saveHeight  = 427
+        self.saveQuality = 50 # Set jpeg quality (0 to 100)
 
         # Test-Image settings
         self.testWidth = 100
@@ -98,6 +98,7 @@ class Camera:
         filename = self.filepath + "/" + self.filenamePrefix + "-%04d%02d%02d-%02d%02d%02d.jpg" % (time.year, time.month, time.day, time.hour, time.minute, time.second)
         subprocess.call("raspistill %s -w %s -h %s -t 200 -e jpg -q %s -n -o %s" % (settings, width, height, quality, filename), shell=True)
         print "Captured %s" % filename
+        return filename
 
     # Keep free space above given level
     def keepDiskSpaceFree(self, bytesToReserve):

@@ -1,4 +1,7 @@
 #!/usr/bin/python
+#
+# Install python GPIO library: 
+# sudo apt-get update & sudo apt-get install python-gpiozero
 
 import RPi.GPIO as GPIO
 import time

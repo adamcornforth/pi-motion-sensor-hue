@@ -37,7 +37,7 @@ class Hue:
         self.led = LED(17)
 
         self.light_on = False
-        self.timeout_seconds = 60
+        self.timeout_seconds = 10
         self.last_motion = time.time()
 
     def lights_on(self):
