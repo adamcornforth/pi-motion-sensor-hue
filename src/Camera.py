@@ -24,8 +24,8 @@ class Camera:
         # filenamePrefix     - string that prefixes the file name for easier identification of files.
         # diskSpaceToReserve - Delete oldest images to avoid filling disk. How much byte to keep free on disk.
         # cameraSettings     - "" = no extra settings; "-hf" = Set horizontal flip of image; "-vf" = Set vertical flip; "-hf -vf" = both horizontal and vertical flip
-        self.threshold = 10
-        self.sensitivity = 5
+        self.threshold = 50
+        self.sensitivity = 200
         self.forceCapture = True
         self.forceCaptureTime = 60 * 60 # Once an hour
         self.filepath = "/home/pi/apps/hue/images"
@@ -98,6 +98,7 @@ class Camera:
         filename = self.filepath + "/" + self.filenamePrefix + "-%04d%02d%02d-%02d%02d%02d.jpg" % (time.year, time.month, time.day, time.hour, time.minute, time.second)
         subprocess.call("raspistill %s -w %s -h %s -t 200 -e jpg -q %s -n -o %s" % (settings, width, height, quality, filename), shell=True)
         print "Captured %s" % filename
+        return filename
 
     # Keep free space above given level
     def keepDiskSpaceFree(self, bytesToReserve):
@@ -142,7 +143,7 @@ class Camera:
                             debugim[x,y] = (0, 255, 0) # in debug mode, mark all changed pixel to green
                     # Save an image if pixels changed
                     if (changedPixels > self.sensitivity):
-                        print "enough change at {}".format(((x+y)/self.testWidth+self.testHeight)*100)
+                        #print "enough change at {}".format(((x+y)/self.testWidth+self.testHeight)*100)
                         return True # will shoot the photo later
                     if ((self.debugMode == False) and (changedPixels > self.sensitivity)):
                         break  # break the y loop

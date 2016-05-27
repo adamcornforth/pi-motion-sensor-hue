@@ -42,15 +42,15 @@ class Hue:
 
     def lights_on(self):
         """Turns the hue lights on"""
-        print 'on'
-        self.b.set_light(self.lights, 'on', True)
-        self.b.set_light(self.lights, 'bri', 254)
+        #print 'on'
+        #self.b.set_light(self.lights, 'on', True)
+        #self.b.set_light(self.lights, 'bri', 254)
         self.light_on = True
 
     def lights_off(self):
         """Turns the hue lights off"""
-        print 'off'
-        self.b.set_light(self.lights, 'on', False)
+        #print 'off'
+        #self.b.set_light(self.lights, 'on', False)
         self.light_on = False
 
     def is_light_on(self):
@@ -91,7 +91,7 @@ class Hue:
         last motion was long enough ago"""
         self.led.off()
 
-        print "time since motion {}".format((time.time() - self.last_motion))
+        # print "time since motion {}".format((time.time() - self.last_motion))
 
         if(self.is_light_on() and self.timeout_elapsed()):
 
